@@ -1,0 +1,71 @@
+.upload-component {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  width: 300px;
+  z-index: 1000;
+}
+
+.upload-component form {
+  display: flex;
+  flex-direction: column;
+}
+
+.upload-component input,
+.upload-component textarea {
+  margin-bottom: 0.5rem;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+.upload-component textarea {
+  resize: vertical;
+  min-height: 100px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.upload-component button {
+  background-color: teal;
+  border: none;
+  padding: 0.75rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.upload-component button:hover {
+  background-color: teal;
+}
+
+.upload-component input:focus,
+.upload-component textarea:focus {
+  outline: none;
+  border-color: teal;
+  box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+}
+
+.upload-component input::placeholder,
+.upload-component textarea::placeholder {
+  color: #999;
+}
+
+.upload-component button:active {
+  transform: translateY(1px);
+}
+
+@media (max-width: 768px) {
+  .upload-component {
+    width: 90%;
+    left: 5%;
+    right: 5%;
+    bottom: 10px;
+  }
+}
