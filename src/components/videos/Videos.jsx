@@ -5,6 +5,7 @@ import "./style.css";
 import "../search/style.css";
 import FullLogoColor from "../../assets/FULL_LOGO_COLOR.png";
 
+// Function to extract YouTube video ID from a URL
 function getYouTubeId(url) {
   const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
   const match = url.match(regExp);
@@ -19,6 +20,7 @@ const Videos = () => {
   const [newComment, setNewComment] = useState("");
   const [showUpload, setShowUpload] = useState(false);
 
+  // Get all videos for a specific user. Hard coded here to match the user in Server.js
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -30,6 +32,7 @@ const Videos = () => {
         );
         if (response.ok) {
           const data = await response.json();
+          // Populate all videos for both the immediate display and allow for potential filtering via search
           setVideos(data.videos);
           setFilteredVideos(data.videos);
         } else {
@@ -42,6 +45,7 @@ const Videos = () => {
     fetchData();
   }, []);
 
+  // Retrieve comments for a specific video
   const fetchComments = async (videoId) => {
     try {
       const response = await fetch(`http://localhost:5000/comments/${videoId}`);
@@ -56,6 +60,7 @@ const Videos = () => {
     }
   };
 
+  // Handle new comment submissions
   const handleCommentSubmit = async (e) => {
     e.preventDefault();
     if (!newComment.trim()) return;
