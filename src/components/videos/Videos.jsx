@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import Search from "../search/Search";
 import Upload from "../upload/Upload";
 import "./style.css";
+import "../search/style.css";
 import FullLogoColor from "../../assets/FULL_LOGO_COLOR.png";
 
 function getYouTubeId(url) {

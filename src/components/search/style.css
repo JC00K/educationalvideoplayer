@@ -14,7 +14,7 @@
 
 .search button {
   padding: 0.5rem 1rem;
-  background-color: #3498db;
+  background-color: teal;
   color: white;
   border: none;
   border-radius: 0 4px 4px 0;
@@ -23,5 +23,5 @@
 }
 
 .search button:hover {
-  background-color: #2980b9;
+  background-color: teal;
 }

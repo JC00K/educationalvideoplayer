@@ -46,13 +46,6 @@ body {
   max-width: 150px;
   height: auto;
 }
-.header-content {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  max-width: 1200px;
-  margin: 0 auto;
-}
 
 .upload-button {
   background-color: teal;
@@ -90,10 +83,6 @@ body {
 
 .video-card:hover {
   transform: translateY(-5px);
-}
-
-.video-thumbnail {
-  position: relative;
 }
 
 .video-thumbnail img {
@@ -291,32 +280,4 @@ body {
     justify-content: center;
     margin-bottom: 1rem;
   }
-}
-
-.search {
-  display: flex;
-  align-items: center;
-  max-width: 300px;
-}
-
-.search input {
-  flex-grow: 1;
-  padding: 0.5rem;
-  border: 1px solid #ccc;
-  border-radius: 4px 0 0 4px;
-  font-size: 0.9rem;
-}
-
-.search button {
-  padding: 0.5rem 1rem;
-  background-color: teal;
-  color: white;
-  border: none;
-  border-radius: 0 4px 4px 0;
-  cursor: pointer;
-  font-size: 0.9rem;
-}
-
-.search button:hover {
-  background-color: teal;
 }
