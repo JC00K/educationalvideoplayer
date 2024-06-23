@@ -1,9 +1,8 @@
 import { useState, useEffect } from "react";
 import Search from "../search/Search";
 import Upload from "../upload/Upload";
-import "./style.css";
-import "../search/style.css";
 import FullLogoColor from "../../assets/FULL_LOGO_COLOR.png";
+import "./style.css";
 
 // Function to extract YouTube video ID from a URL
 function getYouTubeId(url) {
@@ -13,23 +12,26 @@ function getYouTubeId(url) {
 }
 
 const Videos = () => {
+  // All videos from a specific user
   const [videos, setVideos] = useState([]);
+  // Searching for specific video
   const [filteredVideos, setFilteredVideos] = useState([]);
+  // User interacts with a specific video
   const [selectedVideo, setSelectedVideo] = useState(null);
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState("");
+  // Upload Modal
   const [showUpload, setShowUpload] = useState(false);
+  // Handle scroll wheel when video modal open
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   // Get all videos for a specific user. Hard coded here to match the user in Server.js
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(
-          "http://localhost:5000/getvideos/jeremy_cook1",
-          {
-            method: "GET",
-          }
-        );
+        const response = await fetch("http://localhost:5000/getvideos/jeremy_cook1", {
+          method: "GET",
+        });
         if (response.ok) {
           const data = await response.json();
           // Populate all videos for both the immediate display and allow for potential filtering via search
@@ -91,15 +93,17 @@ const Videos = () => {
     }
   };
 
+  const handleVideoSelect = (video) => {
+    setSelectedVideo(video);
+    fetchComments(video.id);
+    setIsModalOpen(true);
+  };
+
   const handleCloseModal = () => {
     setSelectedVideo(null);
     setComments([]);
     setNewComment("");
-  };
-
-  const handleVideoSelect = (video) => {
-    setSelectedVideo(video);
-    fetchComments(video.id);
+    setIsModalOpen(false);
   };
 
   const toggleUpload = () => {
@@ -114,7 +118,7 @@ const Videos = () => {
   };
 
   return (
-    <div className="video-page">
+    <div className={`video-page${isModalOpen ? '-modal-open' : ''}`}>
       <header className="header">
         <div className="header-left">
           <Search onSearch={handleSearch} />
@@ -217,3 +221,4 @@ const Videos = () => {
 };
 
 export default Videos;
+
