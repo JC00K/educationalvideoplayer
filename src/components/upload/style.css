@@ -44,16 +44,6 @@
   font-weight: bold;
 }
 
-.upload-component button:disabled {
-  background-color: #cccccc;
-  color: #666666;
-  cursor: not-allowed;
-}
-
-.upload-component button:disabled:hover {
-  background-color: #cccccc;
-}
-
 .upload-component button:hover {
   background-color: teal;
 }

@@ -6,11 +6,9 @@ const Upload = () => {
   const [title, setTitle] = useState("");
   const [url, setUrl] = useState("");
   const [description, setDescription] = useState("");
-  // Confirm when successful video submission is made
-  const [isUploaded, setIsUploaded] = useState(false);
+
 
   const handleSubmit = async () => {
-    // e.preventDefault();
     try {
       const response = await fetch("http://localhost:5000/create", {
         method: "POST",
@@ -30,8 +28,6 @@ const Upload = () => {
         setTitle("");
         setUrl("");
         setDescription("");
-        setIsUploaded(true)
-
       } else {
         console.error("Error:", response.statusText);
       }
@@ -63,7 +59,7 @@ const Upload = () => {
           onChange={(e) => setDescription(e.target.value)}
           required
         />
-        <button type="submit" disabled={isUploaded}>{isUploaded ? "Uploaded Successfully" : "Upload Video"}</button>
+        <button type="submit">Upload Video</button>
       </form>
     </div>
   );
