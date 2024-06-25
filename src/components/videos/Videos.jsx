@@ -170,7 +170,6 @@ const Videos = () => {
           <div className="video-player-modal" onClick={handleCloseModal}>
             <div
               className="video-player-content"
-              onClick={(e) => e.stopPropagation()}
             >
               <button className="close-button" onClick={handleCloseModal}>
                 &times;

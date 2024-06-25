@@ -144,6 +144,10 @@ body {
   position: relative;
 }
 
+.video-player-content::-webkit-scrollbar {
+display: none
+}
+
 .video-player-container {
   position: relative;
   padding-bottom: 56.25%;
