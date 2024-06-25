@@ -9,8 +9,8 @@ const Upload = () => {
   // Confirm when successful video submission is made
   const [isUploaded, setIsUploaded] = useState(false);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async () => {
+    // e.preventDefault();
     try {
       const response = await fetch("http://localhost:5000/create", {
         method: "POST",
@@ -31,6 +31,7 @@ const Upload = () => {
         setUrl("");
         setDescription("");
         setIsUploaded(true)
+
       } else {
         console.error("Error:", response.statusText);
       }
