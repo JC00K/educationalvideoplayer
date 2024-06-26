@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Search from "../search/Search";
 import Upload from "../upload/Upload";
 import FullLogoColor from "../../assets/FULL_LOGO_COLOR.png";
@@ -24,6 +24,9 @@ const Videos = () => {
   const [showUpload, setShowUpload] = useState(false);
   // Handle scroll wheel when video modal open
   const [isModalOpen, setIsModalOpen] = useState(false);
+  // Handle modal open/close based on click location
+  const modalRef = useRef(null)
+
 
   // Get all videos for a specific user. Hard coded here to match the user in Server.js
   useEffect(() => {
@@ -106,6 +109,12 @@ const Videos = () => {
     setIsModalOpen(false);
   };
 
+  const handleModalClick = (e) => {
+    if (modalRef.current && !modalRef.current.contains(e.target)) {
+      handleCloseModal()
+    }
+  }
+
   const toggleUpload = () => {
     setShowUpload(!showUpload);
   };
@@ -167,9 +176,10 @@ const Videos = () => {
           )}
         </div>
         {selectedVideo && (
-          <div className="video-player-modal" onClick={handleCloseModal}>
+          <div className="video-player-modal" onClick={handleModalClick}>
             <div
               className="video-player-content"
+              ref={modalRef}
             >
               <button className="close-button" onClick={handleCloseModal}>
                 &times;
