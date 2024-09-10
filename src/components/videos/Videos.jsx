@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import Search from "../search/Search";
 import Upload from "../upload/Upload";
-import FullLogoColor from "../../assets/FULL_LOGO_COLOR.png";
 import "./style.css";
 
 // Function to extract YouTube video ID from a URL
@@ -25,16 +24,18 @@ const Videos = () => {
   // Handle scroll wheel when video modal open
   const [isModalOpen, setIsModalOpen] = useState(false);
   // Handle modal open/close based on click location
-  const modalRef = useRef(null)
-
+  const modalRef = useRef(null);
 
   // Get all videos for a specific user. Hard coded here to match the user in Server.js
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:5000/getvideos/jeremy_cook1", {
-          method: "GET",
-        });
+        const response = await fetch(
+          "http://localhost:5000/getvideos/jeremy_cook1",
+          {
+            method: "GET",
+          }
+        );
         if (response.ok) {
           const data = await response.json();
           // Populate all videos for both the immediate display and allow for potential filtering via search
@@ -111,9 +112,9 @@ const Videos = () => {
 
   const handleModalClick = (e) => {
     if (modalRef.current && !modalRef.current.contains(e.target)) {
-      handleCloseModal()
+      handleCloseModal();
     }
-  }
+  };
 
   const toggleUpload = () => {
     setShowUpload(!showUpload);
@@ -127,13 +128,10 @@ const Videos = () => {
   };
 
   return (
-    <div className={`video-page${isModalOpen ? '-modal-open' : ''}`}>
+    <div className={`video-page${isModalOpen ? "-modal-open" : ""}`}>
       <header className="header">
         <div className="header-left">
           <Search onSearch={handleSearch} />
-        </div>
-        <div className="header-center">
-          <img src={FullLogoColor} alt="LearnWell" className="header-logo" />
         </div>
         <div className="header-right">
           <button className="upload-button" onClick={toggleUpload}>
@@ -150,8 +148,7 @@ const Videos = () => {
                 <div
                   key={index}
                   className="video-card"
-                  onClick={() => handleVideoSelect(video)}
-                >
+                  onClick={() => handleVideoSelect(video)}>
                   <div className="video-thumbnail">
                     <img
                       src={`https://img.youtube.com/vi/${youtubeId}/mqdefault.jpg`}
@@ -177,10 +174,7 @@ const Videos = () => {
         </div>
         {selectedVideo && (
           <div className="video-player-modal" onClick={handleModalClick}>
-            <div
-              className="video-player-content"
-              ref={modalRef}
-            >
+            <div className="video-player-content" ref={modalRef}>
               <button className="close-button" onClick={handleCloseModal}>
                 &times;
               </button>
@@ -191,8 +185,7 @@ const Videos = () => {
                   )}`}
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
-                  title={selectedVideo.title}
-                ></iframe>
+                  title={selectedVideo.title}></iframe>
               </div>
               <h3 className="video-title">{selectedVideo.title}</h3>
               <p className="video-meta">
@@ -230,4 +223,3 @@ const Videos = () => {
 };
 
 export default Videos;
-
